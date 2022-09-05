@@ -1,10 +1,10 @@
 import qrcode
 import string
 import random
-from django.db import models
 from io import BytesIO
-from django.core.files import File
+from django.db import models
 from PIL import Image, ImageDraw
+from django.core.files import File
 
 
 class Discount(models.Model):
@@ -18,7 +18,7 @@ class Client(models.Model):
     car_number = models.CharField(max_length=8)
     price = models.FloatField(blank=True, null=True)
     quantity = models.IntegerField(blank=True, null=True)
-    bonus = models.IntegerField()
+    bonus = models.IntegerField(default=0, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         lower = string.ascii_lowercase
@@ -34,7 +34,7 @@ class Client(models.Model):
         canvas = Image.new('RGB', (300, 300), 'white')
         draw = ImageDraw.Draw(canvas)
         canvas.paste(qrcode_img)
-        fname = f'{self.name}, {self.car_number} qr_code' + '.png'
+        fname = f'{self.name}, {self.car_number} qr_code {password}' + '.png'
         buffer = BytesIO()
         canvas.save(buffer, 'PNG')
         self.card_id.save(fname, File(buffer), save=False)
@@ -42,7 +42,7 @@ class Client(models.Model):
         super().save(*args, **kwargs)
 
     class Meta:
-        verbose_name_plural = 'Klient'
+        verbose_name_plural = 'Mijozlar'
 
 class CarWash(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
@@ -51,3 +51,4 @@ class CarWash(models.Model):
 
     class Meta:
         verbose_name_plural = 'Moyka'
+

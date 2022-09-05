@@ -190,166 +190,21 @@
 
     <main class="content">
 				<div class="container-fluid p-0">
-					<div class="row">
-						<div class="col-12 col-sm-6 col-xl d-flex">
-							<div class="card flex-fill">
-								<div class="card-body py-4">
-									<div class="media">
-										<div class="d-inline-block mt-2 mr-3">
-											<i class="feather-lg text-primary" data-feather="truck"></i>
-										</div>
-										<div class="media-body">
-											<h3 class="mb-2">2.562</h3>
-											<div class="mb-0">Kunlik</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-12 col-sm-6 col-xl d-flex">
-							<div class="card flex-fill">
-								<div class="card-body py-4">
-									<div class="media">
-										<div class="d-inline-block mt-2 mr-3">
-											<i class="feather-lg text-warning" data-feather="activity"></i>
-										</div>
-										<div class="media-body">
-											<h3 class="mb-2">17.212</h3>
-											<div class="mb-0">Visitors Today</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-12 col-sm-6 col-xl d-flex">
-							<div class="card flex-fill">
-								<div class="card-body py-4">
-									<div class="media">
-										<div class="d-inline-block mt-2 mr-3">
-											<i class="feather-lg text-success" data-feather="users"></i>
-										</div>
-										<div class="media-body">
-											<h3 class="mb-2">{{ client_soni }}</h3>
-											<div class="mb-0">Umumiy mijozlar soni</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-12 col-sm-6 col-xl d-flex">
-							<div class="card flex-fill">
-								<div class="card-body py-4">
-									<div class="media">
-										<div class="d-inline-block mt-2 mr-3">
-											<i class="feather-lg text-danger" data-feather="cloud-rain"></i>
-										</div>
-										<div class="media-body">
-											<h3 class="mb-2">43</h3>
-											<div class="mb-0">Umumiy yuvilganlar soni</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-                        <div class="col-12 col-lg-8 d-flex">
-							<div class="card flex-fill w-100">
-								<div class="card-header">
-									<span class="badge badge-primary float-right">Umumiy</span>
-									<h5 class="card-title mb-0">Bonus chiqgan haydovchilar ro'yhati</h5>
-								</div>
-                                <table id="datatables-dashboard-projects" class="table table-striped my-0">
-									<thead>
-										<tr>
-											<th>F.I.O.</th>
-											<th class="d-none d-xl-table-cell">Avtomobil raqami</th>
-											<th class="d-none d-xl-table-cell">Narxi</th>
-											<th class="d-none d-xl-table-cell">Soni</th>
-											<th>Bonus</th>
-										</tr>
-									</thead>
-									<tbody>
-                                    {% for i in bonus_bor %}
-										<tr>
-											<td>{{ i.name }}</td>
-											<td class="d-none d-xl-table-cell">{{ i.car_number }}</td>
-											<td class="d-none d-xl-table-cell">{{ i.price }}</td>
-                                            <td class="d-none d-md-table-cell">{{ i.quantity }}</td>
-											<td><span class="badge badge-success">Bonus</span></td>
-										</tr>
-                                    {% endfor %}
-									</tbody>
-								</table>
-							</div>
-						</div>
-                        <div class="col-12 col-lg-6 col-xl-4 d-flex">
-							<div class="card flex-fill">
-								<div class="card-header">
-									<div class="card-actions float-right">
-										<div class="dropdown show">
-											<a href="#" data-toggle="dropdown" data-display="static">
-                                                <i class="align-middle" data-feather="more-horizontal"></i>
-                                            </a>
-											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="#">Action</a>
-												<a class="dropdown-item" href="#">Another action</a>
-												<a class="dropdown-item" href="#">Something else here</a>
-											</div>
-										</div>
-									</div>
-									<h5 class="card-title mb-0">Kalendar</h5>
-								</div>
-								<div class="card-body d-flex">
-									<div class="align-self-center w-100">
-										<div class="chart">
-											<div id="datetimepicker-dashboard"></div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-                        <div class="col-12 col-lg-8 d-flex">
-							<div class="card flex-fill w-100">
-								<div class="card-header">
-									<span class="badge badge-primary float-right">Monthly</span>
-									<h5 class="card-title mb-0">Total Revenue</h5>
-								</div>
 
-								<div class="card-body">
-									<div class="chart chart-lg">
-										<canvas id="chartjs-dashboard-line"></canvas>
-									</div>
-								</div>
-							</div>
-						</div>
-                        <div class="col-12 col-lg-6 col-xl-4 d-flex">
-							<div class="card flex-fill w-100">
+					<h1 class="h3 mb-3">Blank Page</h1>
+
+					<div class="row">
+						<div class="col-12">
+							<div class="card">
 								<div class="card-header">
-									<div class="card-actions float-right">
-										<div class="dropdown show">
-											<a href="#" data-toggle="dropdown" data-display="static">
-                                                <i class="align-middle" data-feather="more-horizontal"></i>
-                                            </a>
-											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="#">Action</a>
-												<a class="dropdown-item" href="#">Another action</a>
-												<a class="dropdown-item" href="#">Something else here</a>
-											</div>
-										</div>
-									</div>
-									<h5 class="card-title mb-0">Sales / Revenue</h5>
+									<h5 class="card-title mb-0">Empty card</h5>
 								</div>
-								<div class="card-body d-flex w-100">
-									<div class="align-self-center chart chart-lg">
-										<canvas id="chartjs-dashboard-bar"></canvas>
-									</div>
+								<div class="card-body">
 								</div>
 							</div>
 						</div>
 					</div>
+
 				</div>
 			</main>
 {% endblock %}

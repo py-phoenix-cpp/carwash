@@ -1,0 +1,280 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Moyka CRM">
+	<meta name="author" content="Shuxratbekov">
+
+	<title>Moyka CRM - Dashboard</title>
+
+	<link rel="preconnect" href="//fonts.gstatic.com/" crossorigin="">
+	<link href="{% static 'css/classic.css' %}" rel="stylesheet">
+
+	<style>
+		body {
+			opacity: 0;
+		}
+	</style>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-120946860-6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-120946860-6');
+    </script>
+</head>
+
+<body>
+	<div class="wrapper">
+        <nav id="sidebar" class="sidebar">
+			<div class="sidebar-content ">
+				<a class="sidebar-brand" href="{% url 'index' %}">
+                    <i class="align-middle" data-feather="cloud-rain"></i>
+                    <span class="align-middle">Moyka CRM</span>
+                </a>
+                <ul class="sidebar-nav">
+					<li class="sidebar-header">
+						Main
+					</li>
+					<li class="sidebar-item">
+						<a href="{% url 'index' %}" class="sidebar-link">
+                        <i class="align-middle" data-feather="home"></i> <span class="align-middle">Dashboard</span>
+                    </a>
+
+					</li>
+					<li class="sidebar-item">
+						<a href="{% url 'add-client' %}" class="sidebar-link collapsed">
+                            <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Klient qo'shish</span>
+                        </a>
+					</li>
+					<li class="sidebar-item">
+						<a href="{% url 'list-clients' %}" class="sidebar-link collapsed">
+                            <i class="align-middle" data-feather="users"></i> <span class="align-middle">Klientlar ro'yhati</span>
+                        </a>
+					</li>
+					<li class="sidebar-item">
+						<a href="{% url 'client' %}" class="sidebar-link collapsed">
+                            <i class="align-middle" data-feather="monitor"></i> <span class="align-middle">Layouts</span>
+                        </a>
+					</li>
+					<li class="sidebar-item">
+						<a href="#documentation" class="sidebar-link collapsed">
+                            <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Documentation</span>
+                        </a>
+					</li>
+				</ul>
+				<div class="sidebar-bottom d-none d-lg-block">
+					<div class="media">
+						<img class="rounded-circle mr-3" src="{% static 'img\avatars\avatar.jpg' %}" alt="Chris Wood" width="40" height="40">
+						<div class="media-body">
+							<h5 class="mb-1">Admin</h5>
+							<div>
+								<i class="fas fa-circle text-success"></i> proccessing...
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<div class="main">
+{% block content %}
+
+{% endblock %}
+			<footer class="footer">
+				<div class="container-fluid">
+					<div class="row text-muted">
+						<div class="col-6 text-left">
+							<ul class="list-inline">
+								<li class="list-inline-item">
+									<a class="text-muted" href="#">Support</a>
+								</li>
+								<li class="list-inline-item">
+									<a class="text-muted" href="#">Help Center</a>
+								</li>
+								<li class="list-inline-item">
+									<a class="text-muted" href="#">Privacy</a>
+								</li>
+								<li class="list-inline-item">
+									<a class="text-muted" href="#">Terms of Service</a>
+								</li>
+							</ul>
+						</div>
+						<div class="col-6 text-right">
+							<p class="mb-0">
+								&copy; 2022 - <a href="{% url 'index' %}" class="text-muted">Moyka CRM</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</div>
+
+	<script src="{% static 'js\app.js' %}"></script>
+
+	<script>
+		$(function() {
+			// Bar chart
+			new Chart(document.getElementById("chartjs-dashboard-bar"), {
+				type: "bar",
+				data: {
+					labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+					datasets: [{
+						label: "Last year",
+						backgroundColor: window.theme.primary,
+						borderColor: window.theme.primary,
+						hoverBackgroundColor: window.theme.primary,
+						hoverBorderColor: window.theme.primary,
+						data: [54, 67, 41, 55, 62, 45, 55, 73, 60, 76, 48, 79]
+					}, {
+						label: "This year",
+						backgroundColor: "#E8EAED",
+						borderColor: "#E8EAED",
+						hoverBackgroundColor: "#E8EAED",
+						hoverBorderColor: "#E8EAED",
+						data: [69, 66, 24, 48, 52, 51, 44, 53, 62, 79, 51, 68]
+					}]
+				},
+				options: {
+					maintainAspectRatio: false,
+					legend: {
+						display: false
+					},
+					scales: {
+						yAxes: [{
+							gridLines: {
+								display: false
+							},
+							stacked: false,
+							ticks: {
+								stepSize: 20
+							}
+						}],
+						xAxes: [{
+							barPercentage: .75,
+							categoryPercentage: .5,
+							stacked: false,
+							gridLines: {
+								color: "transparent"
+							}
+						}]
+					}
+				}
+			});
+		});
+	</script>
+	<script>
+		$(function() {
+			$("#datetimepicker-dashboard").datetimepicker({
+				inline: true,
+				sideBySide: false,
+				format: "L"
+			});
+		});
+	</script>
+	<script>
+		$(function() {
+			// Line chart
+			new Chart(document.getElementById("chartjs-dashboard-line"), {
+				type: "line",
+				data: {
+					labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+					datasets: [{
+						label: "Sales ($)",
+						fill: true,
+						backgroundColor: "transparent",
+						borderColor: window.theme.primary,
+						data: [2015, 1465, 1487, 1796, 1387, 2123, 2866, 2548, 3902, 4938, 3917, 4927]
+					}, {
+						label: "Orders",
+						fill: true,
+						backgroundColor: "transparent",
+						borderColor: window.theme.tertiary,
+						borderDash: [4, 4],
+						data: [928, 734, 626, 893, 921, 1202, 1396, 1232, 1524, 2102, 1506, 1887]
+					}]
+				},
+				options: {
+					maintainAspectRatio: false,
+					legend: {
+						display: false
+					},
+					tooltips: {
+						intersect: false
+					},
+					hover: {
+						intersect: true
+					},
+					plugins: {
+						filler: {
+							propagate: false
+						}
+					},
+					scales: {
+						xAxes: [{
+							reverse: true,
+							gridLines: {
+								color: "rgba(0,0,0,0.05)"
+							}
+						}],
+						yAxes: [{
+							ticks: {
+								stepSize: 500
+							},
+							display: true,
+							borderDash: [5, 5],
+							gridLines: {
+								color: "rgba(0,0,0,0)",
+								fontColor: "#fff"
+							}
+						}]
+					}
+				}
+			});
+		});
+	</script>
+	<script>
+		$(function() {
+			// Pie chart
+			new Chart(document.getElementById("chartjs-dashboard-pie"), {
+				type: "pie",
+				data: {
+					labels: ["Direct", "Affiliate", "E-mail", "Other"],
+					datasets: [{
+						data: [2602, 1253, 541, 1465],
+						backgroundColor: [
+							window.theme.primary,
+							window.theme.warning,
+							window.theme.danger,
+							"#E8EAED"
+						],
+						borderColor: "transparent"
+					}]
+				},
+				options: {
+					responsive: !window.MSInputMethodContext,
+					maintainAspectRatio: false,
+					legend: {
+						display: false
+					}
+				}
+			});
+		});
+	</script>
+	<script>
+		$(function() {
+			$("#datatables-dashboard-projects").DataTable({
+				pageLength: 10,
+				lengthChange: false,
+				bFilter: false,
+				autoWidth: false
+			});
+		});
+	</script>
+</body>
+</html>

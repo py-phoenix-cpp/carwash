@@ -173,7 +173,7 @@
                     </a>
 
                     <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
-                        <img src="{% static 'img\avatars\avatar.jpg' %}" class="avatar img-fluid rounded-circle mr-1" alt="Chris Wood"> <span class="text-dark">{{ request.user.first_name }}</span>
+                        <img src="{% static 'img\avatars\avatar.jpg' %}" class="avatar img-fluid rounded-circle mr-1" alt="Chris Wood"> <span class="text-dark">Admin</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="pages-profile.html"><i class="align-middle mr-1" data-feather="user"></i> Profile</a>
@@ -181,7 +181,7 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="pages-settings.html">Settings & Privacy</a>
                         <a class="dropdown-item" href="#">Help</a>
-                        <a class="dropdown-item" href="{% url 'logout' %}">Sign out</a>
+                        <a class="dropdown-item" href="#">Sign out</a>
                     </div>
                 </li>
             </ul>
@@ -190,70 +190,8 @@
 
     <main class="content">
 				<div class="container-fluid p-0">
-					<div class="row">
-						<div class="col-12 col-sm-6 col-xl d-flex">
-							<div class="card flex-fill">
-								<div class="card-body py-4">
-									<div class="media">
-										<div class="d-inline-block mt-2 mr-3">
-											<i class="feather-lg text-primary" data-feather="truck"></i>
-										</div>
-										<div class="media-body">
-											<h3 class="mb-2">2.562</h3>
-											<div class="mb-0">Kunlik</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-12 col-sm-6 col-xl d-flex">
-							<div class="card flex-fill">
-								<div class="card-body py-4">
-									<div class="media">
-										<div class="d-inline-block mt-2 mr-3">
-											<i class="feather-lg text-warning" data-feather="activity"></i>
-										</div>
-										<div class="media-body">
-											<h3 class="mb-2">17.212</h3>
-											<div class="mb-0">Visitors Today</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-12 col-sm-6 col-xl d-flex">
-							<div class="card flex-fill">
-								<div class="card-body py-4">
-									<div class="media">
-										<div class="d-inline-block mt-2 mr-3">
-											<i class="feather-lg text-success" data-feather="users"></i>
-										</div>
-										<div class="media-body">
-											<h3 class="mb-2">{{ client_soni }}</h3>
-											<div class="mb-0">Umumiy mijozlar soni</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-12 col-sm-6 col-xl d-flex">
-							<div class="card flex-fill">
-								<div class="card-body py-4">
-									<div class="media">
-										<div class="d-inline-block mt-2 mr-3">
-											<i class="feather-lg text-danger" data-feather="cloud-rain"></i>
-										</div>
-										<div class="media-body">
-											<h3 class="mb-2">43</h3>
-											<div class="mb-0">Umumiy yuvilganlar soni</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-                        <div class="col-12 col-lg-8 d-flex">
+                    <div class="row">
+                        <div class="col-12 col-lg-12 d-flex">
 							<div class="card flex-fill w-100">
 								<div class="card-header">
 									<span class="badge badge-primary float-right">Umumiy</span>
@@ -264,89 +202,67 @@
 										<tr>
 											<th>F.I.O.</th>
 											<th class="d-none d-xl-table-cell">Avtomobil raqami</th>
-											<th class="d-none d-xl-table-cell">Narxi</th>
-											<th class="d-none d-xl-table-cell">Soni</th>
-											<th>Bonus</th>
+											<th class="d-none d-xl-table-cell">Umumiy narxi</th>
+											<th class="d-none d-xl-table-cell">Umumiy soni</th>
+											<th class="d-none d-xl-table-cell">ID rasmi</th>
+											<th class="d-none d-xl-table-cell">Tahrirlash</th>
+											<th class="d-none d-xl-table-cell">Yuklab olish</th>
 										</tr>
 									</thead>
 									<tbody>
-                                    {% for i in bonus_bor %}
+                                    {% for i in list %}
 										<tr>
 											<td>{{ i.name }}</td>
-											<td class="d-none d-xl-table-cell">{{ i.car_number }}</td>
-											<td class="d-none d-xl-table-cell">{{ i.price }}</td>
-                                            <td class="d-none d-md-table-cell">{{ i.quantity }}</td>
-											<td><span class="badge badge-success">Bonus</span></td>
+                                            <td>{{ i.car_number.upper }}</td>
+                                            <td>{{ i.price }}</td>
+                                            <td>{{ i.quantity }}</td>
+                                            <td><a data-toggle="modal" data-target="#coloredModalPrimary"><img src="{{ i.card_id.url }}" alt="qr_code" style="width: 50px; height: 50px"></a></td>
+                                            <td>
+                                                <div class="modal modal-colored modal-primary fade" id="coloredModalPrimary" tabindex="-1" role="dialog" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">{{ i.car_number }}</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body m-3">
+                                                                <img src="{{ i.card_id.url }}" alt="rasmda">
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                                                                <a class="btn btn-light" href="{{ i.card_id.url }}" download>Download</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a href="#" data-toggle="modal" data-target="#coloredModalPrimary">
+                                                    <i class="align-middle text-warning" data-feather="edit"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <div class="modal modal-colored modal-primary fade "  id="coloredModalPrimary" tabindex="-1" role="dialog" aria-hidden="true">
+                                                    <div class="modal-dialog " role="document">
+                                                        <div class="modal-content " style="width: 380px; margin: 0 auto">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">{{ i.name }}</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body m-4">
+                                                                <img src="{{ i.card_id.url }}" alt="qr_code" style="width: 300px; height: 300px">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a href="{{ i.card_id.url }}" download><i class="align-middle text-success" data-feather="download"></i></a>
+                                            </td>
 										</tr>
                                     {% endfor %}
 									</tbody>
 								</table>
-							</div>
-						</div>
-                        <div class="col-12 col-lg-6 col-xl-4 d-flex">
-							<div class="card flex-fill">
-								<div class="card-header">
-									<div class="card-actions float-right">
-										<div class="dropdown show">
-											<a href="#" data-toggle="dropdown" data-display="static">
-                                                <i class="align-middle" data-feather="more-horizontal"></i>
-                                            </a>
-											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="#">Action</a>
-												<a class="dropdown-item" href="#">Another action</a>
-												<a class="dropdown-item" href="#">Something else here</a>
-											</div>
-										</div>
-									</div>
-									<h5 class="card-title mb-0">Kalendar</h5>
-								</div>
-								<div class="card-body d-flex">
-									<div class="align-self-center w-100">
-										<div class="chart">
-											<div id="datetimepicker-dashboard"></div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-                        <div class="col-12 col-lg-8 d-flex">
-							<div class="card flex-fill w-100">
-								<div class="card-header">
-									<span class="badge badge-primary float-right">Monthly</span>
-									<h5 class="card-title mb-0">Total Revenue</h5>
-								</div>
-
-								<div class="card-body">
-									<div class="chart chart-lg">
-										<canvas id="chartjs-dashboard-line"></canvas>
-									</div>
-								</div>
-							</div>
-						</div>
-                        <div class="col-12 col-lg-6 col-xl-4 d-flex">
-							<div class="card flex-fill w-100">
-								<div class="card-header">
-									<div class="card-actions float-right">
-										<div class="dropdown show">
-											<a href="#" data-toggle="dropdown" data-display="static">
-                                                <i class="align-middle" data-feather="more-horizontal"></i>
-                                            </a>
-											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="#">Action</a>
-												<a class="dropdown-item" href="#">Another action</a>
-												<a class="dropdown-item" href="#">Something else here</a>
-											</div>
-										</div>
-									</div>
-									<h5 class="card-title mb-0">Sales / Revenue</h5>
-								</div>
-								<div class="card-body d-flex w-100">
-									<div class="align-self-center chart chart-lg">
-										<canvas id="chartjs-dashboard-bar"></canvas>
-									</div>
-								</div>
 							</div>
 						</div>
 					</div>
